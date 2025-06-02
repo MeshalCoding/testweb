@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Almarai:wght@300;400;700;800&family=Fustat:wght@200..800&family=Harmattan:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+    crossorigin="anonymous"
+  />
+  <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Almarai:wght@300;400;700;800&family=Fustat:wght@200..800&family=Harmattan:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        
+
+  <title>عرض الصورة</title>
+  <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    body {
+  font-family: 'Almarai', sans-serif;
+}
+
+    #photo-img {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      border-radius: 15px;
+        max-width: 100%;
+  width: 1000px;
+  height: auto;
+    }
+
+    #photo-img:hover {
+      transform: scale(1.03);
+    }
+
+    .nav-buttons {
+      margin-top: 40px;
+    }
+
+    .nav-buttons a {
+      min-width: 120px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+#header {
+  position: relative;
+  z-index: 2;
+}
+
+.blob-divider {
+  position: relative;
+  margin-top: -210px;
+  z-index: 1;
+    font-size: 0; /* يمنع الفراغ الناتج عن الخط الافتراضي */
+}
+
+.blob-divider img {
+  width: 100%;
+  display: block;
+}
+
+
+.gallery-description {
+  position: relative;
+  z-index: 2;
+  margin-top: -210px !important; /* افتراضي لشاشات المتوسطة */
+  padding: 0 15px;
+  text-align: right;
+  justify-content: right;
+  font-size: 1.4rem;
+  color: #222;
+  font-family: 'Almarai', sans-serif;
+  line-height: 1.6;
+}
+
+.gallery-description p {
+  margin-bottom: 10px;
+}
+
+.gallery-description .author {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #555;
+  font-style: italic;
+}
+/* تصميم الفوتر الرئيسي */
+.noir-footer {
+  width: 100%;
+  direction: ltr; /* لاحظ: إذا كنت تريد الفوتر بالعربية، غيّرها إلى rtl */
+  background: linear-gradient(to right, #ffffff, #d4d4d4, #ffffff);
+  color: #000000;
+  padding: 5rem 2rem 2rem;
+  font-family: 'Playfair Display', serif;
+  border-top: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* الحاوية الداخلية للفوتر */
+.noir-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left; /* أو right حسب اللغة */
+}
+
+/* افتراضيًا: العناصر فوق بعض في الشاشات الصغيرة */
+.noir-brand {
+  width: 100%;
+  text-align: center; /* أو left حسب رغبتك */
+
+}
+
+/* ابتداءً من الشاشات بعرض 768px (مثل التابلت والكمبيوتر) */
+@media (min-width: 1200px) {
+  .noir-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .noir-brand {
+    width: 45%; /* يخلي كل عنصر ياخذ تقريبا نص العرض */
+    text-align: left; /* يمكنك تغييره إلى right لو RTL */
+    margin-bottom: 20px;
+  }
+}
+
+
+
+/* القسم الخاص بالعلامة التجارية */
+.noir-brand h2 {
+  font-size: 2.4rem;
+  color: var(--color-accent);
+  margin-bottom: 0.3rem;
+}
+
+.noir-brand p {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* روابط الفوتر */
+.noir-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.noir-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.noir-links a:hover {
+  color: var(--color-accent); /* يمكنك تغيير اللون المميز */
+}
+
+.noir-social a {
+  font-size: 1.4rem;
+  color: #ffffff;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+.noir-social {
+  display: flex;
+  justify-content: center;  /* توسيط أفقي */
+  align-items: center;      /* توسيط عمودي */
+  gap: 1rem;
+  margin-top: 10px;         /* اختيارية لتحسين التنسيق */
+}
+
+
+.noir-social a:hover {
+  color: #b1541f;
+  transform: translateY(-3px);
+}
+
+/* النص السفلي للفوتر */
+.noir-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #666;
+  opacity: 0.6;
+}
+
+/* شاشات صغيرة */
+@media (max-width: 768px) {
+  .gallery-description {
+    margin-top: -50px;
+    font-size: 1.2rem;
+  }
+  .noir-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;      /* وسط العناصر أفقياً */
+  align-items: flex-start;      /* محاذاة العناوين من الأعلى */
+  gap: 4rem;                    /* مسافة بين العناصر */
+  text-align: left;             /* محاذاة النصوص لليسار (غيّرها لـ right لو كان RTL) */
+  max-width: 1200px;
+  margin: 10px auto 0;
+  margin-top: 210px;
+}
+}
+
+/* شاشات كبيرة */
+@media (min-width: 1200px) {
+  .gallery-description {
+    margin-top: -180px;
+  }
+ 
+}
+
+/* تخفيها على الشاشات الكبيرة */
+@media (min-width: 992px) {
+  .blob-divider {
+    display: none;
+  }
+  .gallery-description {
+  position: relative;
+  z-index: 2;
+  margin-top: -40px !important; /* افتراضي لشاشات المتوسطة */
+  padding: 0 15px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #222;
+  font-family: 'Almarai', sans-serif;
+  line-height: 1.6;
+}
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+    .Segnutre {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        header nav a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            font-family: 'Amiri', serif;
+        }
+
+        header nav a:hover {
+            color: #8f88f7;
+        }
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: nowrap; /* مهم: لا تسمح بالتكدس */
+  margin-top: 20px;
+  flex-direction: row;
+  overflow-x: auto; /* يدعم التمرير إذا ما كفت الأزرار */
+}
+
+/* الأزرار */
+.nav-buttons a {
+  flex: 1 1 auto;         /* يجعل كل زر يتمدد حسب الحاجة */
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;    /* يمنع تكسير النص */
+}
+
+/* التحويم */
+.nav-buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ⚠️ دعم للجوالات */
+@media (max-width: 776px) {
+  .nav-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-buttons a {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+    
+    <header id="header">
+        <div class="Segnutre">Hajer</div>
+        <nav>
+            <a href="#gallery">معرض الصور</a>
+            <a href="#contact">رسالة مُحب</a>
+        </nav>
+
+
+    </header>
+<hr>
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6 mx-auto">
+        <img id="photo-img" src="" class="d-block mx-auto img-fluid"
+             alt="الصورة" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-12 text-center">
+        <h1 id="photo-title" class="display-5 fw-bold text-body-emphasis lh-1 mb-3 mt-4"></h1>
+        <p id="photo-desc" class="lead text-end" dir="rtl" style="white-space: pre-line;"></p>
+
+
+        <!-- أزرار التنقل -->
+<div class="btn-container nav-buttons">
+  <a id="prev-link" class="btn btn-outline-dark">
+    <i class="bi bi-arrow-left-circle-fill me-2"></i>
+  </a>
+  <a href="index.html" class="btn btn-outline-primary">
+    <i class="bi bi-grid me-2"></i> الرجوع إلى الصفحة الرئيسية
+  </a>
+  <a id="next-link" class="btn btn-outline-dark">
+    <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+  </a>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+      <footer class="noir-footer w-100 position-relative text-white" style="
+          background-color: #ffffff; 
+          background-image: url('./assets/images/layered-waves-haikei\ \(2\).svg');
+          
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center bottom;
+          padding: 50px 20px 120px; /* top right/left bottom */
+
+        ">
+
+        <div class="noir-container position-relative" style="z-index: 1;">
+
+            <div class="noir-brand">
+                <h4 style="margin-top: 30px;">Images by Hajer</h4>
+                <p>All photos and visuals provided by Hajer.</p>
+                <div class="noir-social">
+                    <a href="https://instagram.com/hajer_username" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/hajer_username" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="noir-brand">
+                <h4>Development by Meshal</h4>
+                <p>Website coded and designed by Meshal.</p>
+                <div class="noir-social">
+                    <a href="https://instagram.com/raremeow" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="noir-bottom position-relative text-center" style="z-index: 1; margin-top: 30px;">
+            <p>&copy; 2025 — Made with Love by Hajer & Meshal ❤️</p>
+        </div>
+    </footer>
+
+  <script>
+    const photos = {
+      "1": {
+        title: "بين انتظارٍ ومضيّ",
+        img: "./assets/images/2Girls.jpg",
+        desc: `عند زاوية الرصيف، وقفتا تتأملان الشارع في صمت،
+وكأنهما على وشك اتخاذ قرار صغير:
+هل ننتظر الحافلة؟ أم نمضي في طريق آخر؟
+
+الضوء الذهبي للمساء كان يكسو المشهد بنعومة.
+يلامس ملابسهن، حقائبهن، وحتى ظلال الأشجار.
+كل شيء كان عاديًا، بسيطًا،
+لكنه بدا وكأنه لحظة من فيلم قديم…
+لحظة لا يُلتفت إليها كثيرًا، لكنها تظلّ في الذاكرة.
+
+ربما كان حديثهما عن موعدٍ تأخّر،
+أو وجهةٍ جديدة،
+أو حتى عن يومٍ مضى دون أن يُحكى.
+لكن الأكيد أن بين تلك الوقفة العابرة،
+كانت هناك صداقة…
+تشبه الضوء: هادئة، ثابتة، ومطمئنة.`
+
+      },
+      "2": {
+        title: "رسالة معطّرة بالأمل",
+        img: "./assets/images/flowerPhoto.jpg",
+        desc: `استوقفتني لحظة إعداد باقة ورد،
+حيث تناغمت الألوان وتداخلت الأزهار في تنسيق جميل.
+تساءلت،
+إلى من ستصل هذه الباقة؟
+
+وهل ستضيء يومه بسعادة غير متوقعة؟
+ربما تكون رسالة حب،
+أو امتنان،
+أو حتى اعتذار،
+لكنها بلا شك ستحمل بين أوراقها
+فرحًا صغيرًا
+يتفتح في قلب من يستلمها.`
+      },
+      "11": {
+        title: "حديث دافئ في أرض بعيدة",
+        img: "./assets/images/OurDatePhoto.jpg",
+        desc: `عندما رأيت هذا المشهد في الكويت،
+لفت انتباهي أن الجالسين كانوا من الجنسية المصرية،
+فتوقفت لالتقاط صورة تحفظ تلك اللحظة.
+
+أعادني ذلك إلى زياراتي للإسكندرية،
+حيث اعتاد الناس الجلوس أمام البحر،
+يتبادلون الأحاديث البسيطة،
+ويعبّرون عن حبهم باحاديث دافئة وحنونة.
+
+ترددت في ذهني كلمات
+أم كلثوم: “صالحت بيك أيامي، وسامحت بيك الزمن.”
+وكانت هذه الجلسة كانت تعويضًا لهم
+بلحظة دافئة حيث لا شيء يهم
+سوى وجودهم معًا أمام البحر `
+      },
+          "3": {
+        title: "غارق في صمته",
+        img: "./assets/images/SeaPhoto.jpg",
+        desc: `ذهبت لأرى البحر،
+شغّلت الأغاني في السيارة،
+وقررت أن أحاول جمع أفكاري.
+
+لكن فجأة، سقطت عيناَي على
+شخص يجلس بمفرده، صامت، لا يتحرك،
+لكن حضوره كان ثقيلًا، يلفت الانتباه.
+
+نسيت لماذا أنا هنا، وما الذي كان ينبغي عليّ فعله،
+وانشغلت به.
+بدأت أتساءل: ماذا يشعر؟
+ماذا حدث له؟
+وما الذي دفعه لاختيار هذا الصمت؟
+كأنه أنا، لكن في مكان آخر.
+
+كنت قد أتيت لأفرّغ ما في داخلي،
+لكن قلبي انشغل بشخص لا يعرفني،
+غير أن حضوره جعلني أضيع عن كل ما كنت أفكر فيه.
+
+ربما لأننا جميعًا نأتي إلى البحر بحثًا عن شيءٍ فقدناه في داخلنا.
+وربما لأننا نجد أنفسنا أحيانًا
+في عيون غرباء، يشبهوننا كثيرًا.`
+      },
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const photo = photos[id];
+
+   if (photo) {
+  document.getElementById("photo-img").src = photo.img;
+  document.getElementById("photo-title").textContent = photo.title;
+  const descElement = document.getElementById("photo-desc");
+  descElement.textContent = photo.desc;
+  descElement.style.whiteSpace = "pre-line";
+  document.title = photo.title;
+}
+ else {
+      document.querySelector(".container").innerHTML = `
+        <h2 class="text-center text-danger">عذرًا، لم يتم العثور على الصورة.</h2>
+      `;
+    }
+
+    const idNumber = parseInt(id);
+    const prevId = idNumber > 1 ? idNumber - 1 : Object.keys(photos).length;
+    const nextId = idNumber < Object.keys(photos).length ? idNumber + 1 : 1;
+
+    document.getElementById("prev-link").href = `gallery.html?id=${prevId}`;
+    document.getElementById("next-link").href = `gallery.html?id=${nextId}`;
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"
+  ></script>
+</body>
+</html>
